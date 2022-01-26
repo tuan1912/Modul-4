@@ -12,7 +12,12 @@ public class ProductCategoryImpl implements IProductCategoryService{
     @Autowired
     ProductCategoryRepository productCategoryRepository;
     @Override
+
     public List<ProductCategory> findAll() {
         return (List<ProductCategory>) productCategoryRepository.findAll();
     }
+    public ProductCategory findById(long id) {
+        return productCategoryRepository.findById(id).get();
+    }
+
 }

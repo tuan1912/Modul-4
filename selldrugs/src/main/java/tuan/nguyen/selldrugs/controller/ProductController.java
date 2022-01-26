@@ -6,13 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tuan.nguyen.selldrugs.model.Product;
+import tuan.nguyen.selldrugs.model.ProductCategory;
 import tuan.nguyen.selldrugs.service.IProductCategoryService;
 import tuan.nguyen.selldrugs.service.IProductService;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/products")
 public class ProductController {
      @Autowired
@@ -37,11 +38,10 @@ public class ProductController {
         productService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@PathVariable long id,@RequestBody Product product){
-        product.setId(id);
+    @PutMapping()
+    public  ResponseEntity<Void> update(@RequestBody Product product){
         productService.save(product);
-        return new ResponseEntity<>(product,HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

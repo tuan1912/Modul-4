@@ -1,7 +1,7 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap 4 Website Example</title>
+    <title>CRUD</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -17,11 +17,12 @@
             background: #aaa;
         }
     </style>
+
 </head>
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>My First Bootstrap 4 Page</h1>
+    <h1>CRUD</h1>
     <p>Resize this responsive page to see the effect!</p>
 </div>
 
@@ -125,6 +126,7 @@
 
 
 <!-- Modal -->
+
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -137,36 +139,37 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="nameEdit">Name:</label>
-                    <input type="text" class="form-control" id="nameEdit">
+                    <label for="nameUpdate">Name:</label>
+                    <input type="text" class="form-control" id="nameUpdate">
                 </div>
                 <div class="form-group">
-                    <label for="brandEdit">Brand:</label>
-                    <input type="text" class="form-control" id="brandEdit">
+                    <label for="brandUpdate">Brand:</label>
+                    <input type="text" class="form-control" id="brandUpdate">
                 </div>
                 <div class="form-group">
-                    <label for="countryOfOriginEdit">Country Of Origin</label>
-                    <input type="text" class="form-control" id="countryOfOriginEdit">
+                    <label for="countryOfOriginUpdate">Country Of Origin</label>
+                    <input type="text" class="form-control" id="countryOfOriginUpdate">
                 </div>
                 <div class="form-group">
-                    <label for="priceEdit">Price</label>
-                    <input type="text" class="form-control" id="priceEdit">
+                    <label for="priceUpdate">Price</label>
+                    <input type="text" class="form-control" id="priceUpdate">
                 </div>
                 <div class="form-group">
-                    <label for="descriptionEdit">Description</label>
-                    <input type="text" class="form-control" id="descriptionEdit">
+                    <label for="descriptionUpdate">Description</label>
+                    <input type="text" class="form-control" id="descriptionUpdate">
                 </div><div class="form-group">
-                <label for="imgEdit">Image</label>
-                <input type="text" class="form-control" id="imgEdit">
+                <label for="imgUpdate">Image</label>
+                <input type="text" class="form-control" id="imgUpdate">
             </div>
                 <div class="form-group">
-                    <label for="categoryEdit">Category</label>
-                    <input type="text" class="form-control" id="categoryEdit">
+                    <label for="categoryUpdate">Category</label>
+                    <input type="text" class="form-control" id="categoryUpdate">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="edit()" data-dismiss="modal">Edit</button>
+                <table>
+                    <tbody id="saveProductUpdate"></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -178,6 +181,4 @@
 
 </body>
 </html>
-<script>
-
-</script>
+<script src="css/index.js"></script>
