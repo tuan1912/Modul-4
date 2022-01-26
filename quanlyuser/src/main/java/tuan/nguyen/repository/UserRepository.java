@@ -1,8 +1,10 @@
 package tuan.nguyen.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends PagingAndSortingRepository {
+import tuan.nguyen.model.User;
+
+
+public interface UserRepository extends PagingAndSortingRepository<User,Long> {
+
 }

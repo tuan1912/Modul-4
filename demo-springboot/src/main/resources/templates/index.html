@@ -1,0 +1,237 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Website Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .fakeimg {
+            height: 200px;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>My First Bootstrap 4 Page</h1>
+    <p>Resize this responsive page to see the effect!</p>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" style="margin-top:30px">
+
+    <h2>Striped Rows</h2>
+    <p>The .table-striped class adds zebra-stripes to a table:</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>img</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+</div>
+<button><a href="Demo.html">SANG DEMO</a></button>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="img">Img:</label>
+                    <input type="text" class="form-control" id="img">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price">
+                </div>
+                <div class="form-group">
+                    <label for="idCategory">id_Category:</label>
+                    <input type="text" class="form-control" id="idCategory">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="create()" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="nameEdit">
+                </div>
+                <div class="form-group">
+                    <label for="img">Img:</label>
+                    <input type="text" class="form-control" id="imgEdit">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="priceEdit">
+                </div>
+                <div class="form-group">
+                    <label for="idCategory">id_Category:</label>
+                    <input type="text" class="form-control" id="idCategoryEdit">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="edit()" data-dismiss="modal">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>Footer</p>
+</div>
+
+</body>
+</html>
+<script>
+    function show() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products",
+            //xử lý khi thành công
+            success: function (data) {
+                let str = "";
+                for (let i = 0; i < data.length; i++) {
+                    str += "<tr>"
+                    str += `<td>${data[i].id}</td>`
+                    str += `<td>${data[i].name}</td>`
+                    str += `<td>${data[i].price}</td>`
+                    str += `<td><img src="${data[i].img}" height="150" width="200"></td>`
+                    str += `<td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="showEdit(${data[i].id})" data-target="#editModal">Edit</button></td>`
+                    str += "</tr>"
+                }
+
+                document.getElementById("tbody").innerHTML = str;
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    show();
+
+    function showEdit(id) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products/" + id,
+            //xử lý khi thành công
+            success: function (data) {
+                document.getElementById("nameEdit").value = data.name;
+                document.getElementById("imgEdit").value = data.img;
+                document.getElementById("priceEdit").value = data.price;
+                document.getElementById("idCategoryEdit").value = data.category.id;
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+
+    function create() {
+        let name = document.getElementById("name").value;
+        let img = document.getElementById("img").value;
+        let price = document.getElementById("price").value;
+        let idCategoty = document.getElementById("idCategory").value;
+
+        let product = {
+            name: name,
+            img: img,
+            price: price,
+            category: {id: idCategoty}
+        }
+
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products",
+            data: JSON.stringify(product),
+            //xử lý khi thành công
+            success: function (data) {
+                show()
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+</script>

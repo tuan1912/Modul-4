@@ -8,12 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -32,7 +35,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
+@EnableSpringDataWebSupport
+@EnableJpaRepositories("tuan.nguyen.repository")
 @ComponentScan("tuan.nguyen")
+@EnableTransactionManagement
 
 public class MyFirstWebAppConfiguration implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
@@ -80,7 +86,7 @@ public class MyFirstWebAppConfiguration implements ApplicationContextAware, WebM
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("main.model");
+        em.setPackagesToScan("tuan.nguyen.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -92,9 +98,9 @@ public class MyFirstWebAppConfiguration implements ApplicationContextAware, WebM
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/songs");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/accountmanagement");
         dataSource.setUsername("root");
-        dataSource.setPassword("Tuan1041996");
+        dataSource.setPassword("12345678");
         return dataSource;// javax.sql
     }
 
@@ -116,13 +122,13 @@ public class MyFirstWebAppConfiguration implements ApplicationContextAware, WebM
     // chỉ cho Spring biết chỗ lấy tài liệu tĩnh.(js,css,img)
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
-                .addResourceLocations("file:C:\\Users\\Administrator\\Desktop\\Modul4\\quanlyuser\\src\\main\\webapp\\WEB-INF");
+                .addResourceLocations("file:C:\\Users\\Administrator\\Desktop\\Modul4\\quanlyuser\\src\\main\\webapp\\WEB-INF\\");
     }
 
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSizePerFile(50000);
+        multipartResolver.setMaxUploadSizePerFile(10000000);
         return multipartResolver;
     }
 

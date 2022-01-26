@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<form  th:object="${user}" method="post" enctype="multipart/form-data">
+    <table >
+        <tr>
+            <td><label for="userName">User name:</label></td>
+            <td><input id="userName" name="userName" type="text" th:field="${user.userName}"><br></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td><input id="password" name="password" type="text" th:field="${user.password}"><br></td>
+        </tr><tr>
+            <td><label for="firstName">Firs name</label></td>
+            <td> <input id="firstName" name="firstName" type="text" th:field="${user.firstName}"><br></td>
+        </tr><tr>
+            <td> <label for="lastName">Last name</label></td>
+            <td><input id="lastName" name="lastName" type="text" th:field="${user.lastName}"><br></td>
+        </tr><tr>
+            <td><label for="phone">Phone number</label></td>
+            <td> <input id="phone" name="phoneNumber" type="text" th:field="${user.phoneNumber}"><br></td>
+        </tr><tr>
+            <td> <label for="email">Email</label></td>
+            <td> <input id="email" name="email" type="text" th:field="${user.email}"><br></td>
+        </tr><tr>
+            <td><label for="avatarResource">Avatar</label></td>
+            <td><input id="avatarResource" name="avatarResource" type="file" ><br></td>
+        </tr><tr>
+            <td><label for="role">Role</label></td>
+            <td>
+                <select name="role" id="role" th:field="${user.role}"  >
+                    <option  th:each = "role: ${roles}" th:value="${role.id}" th:text="${role.role}" ></option>
+                </select></td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit">Create</button>
+</form>
+
+</body>
+</html>
