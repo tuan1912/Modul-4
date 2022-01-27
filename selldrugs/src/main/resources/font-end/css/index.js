@@ -16,7 +16,8 @@ function showProducts() {
                 str += `<td>${products[i].description}</td>`
                 str += `<td><img src="${products[i].img}" height="150" width="200"></td>`
                 str += `<td>${products[i].productCategory.categoryName}</td>`
-                str += `<td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="showProductUpdateForm(${products[i].id})" data-target="#editModal">Edit</button></td>`
+                str += `<td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="showProductUpdateForm(${products[i].id})" data-target="#editModal">Edit</button>&emsp;
+                            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="deleteProduct(${products[i].id})"  data-target="#checkYes">Delete</button></td>`
                 str += "</tr>"
             }
             document.getElementById("tbody").innerHTML = str;
@@ -105,5 +106,29 @@ function saveChanges(productUpdateId) {
         }
     })
 
+
+}
+// delete product
+function deleteProduct(id) {
+
+    $(document).ready(function (){
+        $("#buttons-choice-yes").click(function(){
+            $.ajax({
+                type : "Delete",
+                headers : {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url : "http://localhost:8080/products/" + id,
+                success: function (){
+                    showProducts();
+                },
+                error : function (err) {
+                    console.log(err);
+                }
+            })
+
+        });
+    })
 
 }

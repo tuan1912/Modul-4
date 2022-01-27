@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tuan.nguyen.selldrugs.model.Product;
-import tuan.nguyen.selldrugs.model.ProductCategory;
 import tuan.nguyen.selldrugs.service.IProductCategoryService;
 import tuan.nguyen.selldrugs.service.IProductService;
 
@@ -34,9 +33,9 @@ public class ProductController {
         return new ResponseEntity<>(product,HttpStatus.OK) ;
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable long id){
+    public ResponseEntity<Void> delete(@PathVariable long id){
         productService.delete(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping()
     public  ResponseEntity<Void> update(@RequestBody Product product){
