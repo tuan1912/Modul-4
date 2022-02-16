@@ -79,32 +79,68 @@ function saveChanges(productUpdateId) {
     let category = $("#categoryUpdate").val();
     let productUpdate = {
         id: productUpdateId,
-        name : name,
-        brand : brand,
-        countryOfOrigin : countryOfOrigin,
-        price : price,
-        description : description,
-        img : img,
-        productCategory : {
-            id : category
+        name: name,
+        brand: brand,
+        countryOfOrigin: countryOfOrigin,
+        price: price,
+        description: description,
+        img: img,
+        productCategory: {
+            id: category
         }
     }
     $.ajax({
-        type : "PUT",
+        type: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url : "http://localhost:8080/products" ,
+        url: "http://localhost:8080/products",
         data: JSON.stringify(productUpdate),
-        success: function (){
+        success: function () {
             showProducts();
             alert("success");
         },
-        error : function (err) {
+        error: function (err) {
             console.log(err);
         }
     })
+}
+    function create() {
+        let name = $("#name").val();
+        let brand = $("#brand").val();
+        let countryOfOrigin = $("#countryOfOrigin").val();
+        let price = $("#price").val();
+        let description = $("#description").val();
+        let img = $("#img").val();
+        let category = $("#category").val();
+        let product = {
+            name: name,
+            brand: brand,
+            countryOfOrigin: countryOfOrigin,
+            price: price,
+            description: description,
+            img: img,
+            productCategory: {
+                id: category
+            }
+        }
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products",
+            data: JSON.stringify(product),
+            success: function () {
+                showProducts();
+                alert("success");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
 
 
 }

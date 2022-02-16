@@ -37,6 +37,7 @@ public class ProductController {
         productService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PutMapping()
     public  ResponseEntity<Void> update(@RequestBody Product product){
         productService.save(product);
